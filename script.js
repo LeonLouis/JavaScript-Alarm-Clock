@@ -1,6 +1,6 @@
 // Create Title
 let title = document.createElement('h1');
-title.innerText = 'Javascript Alarm Clock';
+title.innerText = 'JavaScript Alarm Clock';
 document.body.prepend(title);
 
 // Create Clock
@@ -47,10 +47,10 @@ function createHands(num) {
 
 // Check if Checker is ON
 let alarm_time = null;
+let this_meridiem = null;
 let alarm_hour = document.querySelector('.timer-hour');
 let alarm_minute = document.querySelector('.timer-minute');
 let alarm_meridiem = document.querySelector('.timer-meridiem');
-console.log(alarm_meridiem.value);
 input.addEventListener('change', function() {
   alarm_time = this.checked ? alarm_hour.value + ':' + alarm_minute.value : null;
 });
@@ -63,7 +63,7 @@ alarm_minute.addEventListener('change', function() {
   alarm_time = input.checked ? alarm_hour.value + ':' + alarm_minute.value : null;
 });
 alarm_meridiem.addEventListener('change', function() {
-  alarm_meridiem = input.checked ? alarm_meridiem.value : null;
+  this_meridiem = alarm_meridiem.value;
 });
 
 // Get Date, Check Time for the Alarm
@@ -92,7 +92,7 @@ function ShowDate() {
 
   // Check Alarm Time
   if (seconds == 0) {
-    if (currentTime == alarm_time && current_meridiem.innerText == alarm_meridiem.value) {
+    if (currentTime == alarm_time && current_meridiem.innerText == this_meridiem) {
       clock_wrap.classList.add('shake');
       let audio = new Audio('rooster.wav');
       let alarm_sound = setInterval(function(){
